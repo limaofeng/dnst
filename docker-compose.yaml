@@ -1,0 +1,43 @@
+services:
+  init:
+    image: limaofeng/dnst
+    container_name: dst-init
+    user: root
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CLUSTER_TOKEN=pds-g^KU_HqKLtVzC^c0R1RYctaQjTjF6oL/53bfmZtL6YAx1HJtphLZiuIyI=
+      - MASTER_IP=192.168.101.4
+      - CLUSTER_NAME=dst-cluster
+      - CLUSTER_PASSWORD=123456
+      - ALWAYS_GENERATE_WORLD=true
+    volumes:
+      - ./data:/home/steam/.klei/DoNotStarveTogether/DediServer
+      - ./mods:/home/steam/dst/mods
+    command: sh scripts/genworld.sh
+  # dst-master:
+  #   image: limaofeng/dnst
+  #   container_name: dst-master
+  #   depends_on:
+  #     - init
+  #   ports:
+  #     - "10888:10888/udp"
+  #     - "10888:10888/tcp"
+  #     - "10999:10999/udp"
+  #     - "8766:8766"
+  #     - "27016:27016"
+  #   volumes:
+  #     - ./data:/home/steam/.klei/DoNotStarveTogether/DediServer
+  #   command: sh scripts/overworld.sh
+  #   # command: tail -f /dev/null
+  # dst-caves:
+  #   image: limaofeng/dnst
+  #   container_name: dst-caves
+  #   ports:
+  #     - "10998:10998/udp"
+  #     - "8765:8765"
+  #     - "27015:27015"
+  #   volumes:
+  #     - ./data:/home/steam/.klei/DoNotStarveTogether/DediServer
+  #   command: sh scripts/caves.sh
