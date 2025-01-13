@@ -29,6 +29,7 @@ services:
       - "27016:27016"
     volumes:
       - ./data:/home/steam/.klei/DoNotStarveTogether/DediServer
+      - ./mods:/home/steam/dst/mods
     command: sh scripts/overworld.sh
   dst-caves:
     image: limaofeng/dnst
@@ -39,4 +40,5 @@ services:
       - "27015:27015"
     volumes:
       - ./data:/home/steam/.klei/DoNotStarveTogether/DediServer
+      - ./mods:/home/steam/dst/mods
     command: sh scripts/caves.sh
