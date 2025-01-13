@@ -30,7 +30,6 @@ services:
     volumes:
       - ./data:/home/steam/.klei/DoNotStarveTogether/DediServer
     command: sh scripts/overworld.sh
-    # command: tail -f /dev/null
   dst-caves:
     image: limaofeng/dnst
     container_name: dst-caves
